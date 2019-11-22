@@ -1,7 +1,11 @@
-import React from "react";
+import React, { useEffect } from "react";
+import { fetchCrypto } from "./actions";
+import { connect } from "react-redux";
 import { makeStyles } from "@material-ui/core/styles";
 import Grid from "@material-ui/core/Grid";
-import { Typography, AppBar, Toolbar } from "@material-ui/core";
+import Typography from "@material-ui/core/Typography";
+import AppBar from "@material-ui/core/AppBar";
+import Toolbar from "@material-ui/core/Toolbar";
 import Switch from "./components/Switch";
 import Card from "./components/Card";
 
@@ -19,10 +23,14 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-function App() {
+function App(props) {
   const classes = useStyles();
+  useEffect(() => {
+    props.fetchCrypto();
+  }, []);
   return (
     <div className={classes.root}>
+      {console.log(props.crypto)}
       {/* Appbar */}
       <AppBar position="static">
         <Toolbar>
@@ -51,4 +59,10 @@ function App() {
   );
 }
 
-export default App;
+const mapStateToProps = state => {
+  return {
+    crypto: Object.values(state.crypto)
+  };
+};
+
+export default connect(mapStateToProps, { fetchCrypto })(App);
