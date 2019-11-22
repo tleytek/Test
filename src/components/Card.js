@@ -19,15 +19,15 @@ const useStyles = makeStyles({
 
 export default function MediaCard(props) {
   const classes = useStyles();
-  const { value } = props;
+  const { data } = props;
   return (
     <Card className={classes.card}>
       <CardContent>
         <Typography gutterBottom variant="h5" component="h2">
-          Crypto
+          {data.id}
         </Typography>
         <Typography variant="body2" color="textSecondary" component="p">
-          {value}
+          ${parseInt(data.priceUsd).toFixed(2)} USD
         </Typography>
       </CardContent>
       <CardMedia

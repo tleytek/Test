@@ -49,11 +49,12 @@ function App(props) {
         alignItems="center"
         className={classes.content}
       >
-        {[0, 1, 2, 3].map(value => (
-          <Grid key={value} item>
-            <Card value={value} />
-          </Grid>
-        ))}
+        {props.crypto &&
+          props.crypto.map(crypto => (
+            <Grid key={crypto.id} item>
+              <Card data={crypto} />
+            </Grid>
+          ))}
       </Grid>
     </div>
   );
@@ -61,7 +62,7 @@ function App(props) {
 
 const mapStateToProps = state => {
   return {
-    crypto: Object.values(state.crypto)
+    crypto: state.crypto.data
   };
 };
 
