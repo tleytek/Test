@@ -30,11 +30,11 @@ export default function MediaCard(props) {
           ${parseInt(data.priceUsd).toFixed(2)} USD
         </Typography>
       </CardContent>
-      <CardMedia
+      {/* <CardMedia
         className={classes.media}
         image="/static/images/cards/contemplative-reptile.jpg"
         title="Contemplative Reptile"
-      />
+      /> */}
     </Card>
   );
 }
